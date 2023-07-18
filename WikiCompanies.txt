@@ -1,0 +1,58 @@
+Embarking on a new goal:Create a list of 300 companies from the USA and their websites from WIkipedia
+Thinking...(Restart if this takes more than 30 seconds)
+
+Added task:Retrieve the Wikipedia page for 'List of companies of the United States' using the Wikipedia API.
+Added task:Parse the table containing the company information from the Wikipedia page using a HTML parsing library.
+Added task:Extract the name and website information for each company from the parsed table and store it in a list of 300 companies with their respective websites.
+Thinking...(Restart if this takes more than 30 seconds)
+
+Completing: Retrieve the Wikipedia page for 'List of companies of the United States' using the Wikipedia API.
+
+To create a list of 300 companies from the USA and their websites from Wikipedia, we need to retrieve the Wikipedia page for "List of companies of the United States" using the Wikipedia API.
+
+First, we need to install the Wikipedia API using the pip command:
+
+Python
+Copy Code
+!pip install wikipedia-api
+
+
+Next, we need to import the Wikipedia API and create a Wikipedia page object for the "List of companies of the United States":
+
+Python
+Copy Code
+import wikipediaapi
+
+wiki = wikipediaapi.Wikipedia('en')
+page = wiki.page('List of companies of the United States')
+
+
+We can then extract the text content of the Wikipedia page using the text attribute and parse it to extract the company names and websites. We can use regular expressions to search for patterns in the text to identify company names and website URLs.
+
+Python
+Copy Code
+import re
+
+text = page.text
+
+# Search for company names
+company_names = re.findall(r'^\d+\.\s(.+)\n', text, flags=re.MULTILINE)
+
+# Search for website URLs
+website_urls = re.findall(r'(https?:\/\/[^\s]+)', text)
+
+# Combine company names and website URLs into a list of dictionaries
+companies = [{'name': name, 'website': website} for name, website in zip(company_names, website_urls)]
+
+
+Finally, we can select 300 companies from the list of companies we've extracted and return their names and website URLs:
+
+Python
+Copy Code
+selected_companies = companies[:300]
+selected_company_names = [company['name'] for company in selected_companies]
+selected_company_websites = [company['website'] for company in selected_companies]
+
+Thinking...(Restart if this takes more than 30 seconds)
+No more subtasks for:Retrieve the Wikipedia page for 'List of companies of the United States' using the Wikipedia API.
+Thinking...(Restart if this takes more than 30 seconds)
